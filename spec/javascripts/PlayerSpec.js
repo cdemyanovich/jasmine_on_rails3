@@ -55,4 +55,36 @@ describe("Player", function() {
       }).toThrow("song is already playing");
     });
   });
+
+  it("is muted if volume is 0", function() {
+    player.volume = 0;
+    expect(player).toBeMuted();
+  });
+
+  it("is not muted if volume is not 0", function() {
+    player.volume = 7;
+    expect(player).not.toBeMuted();
+  });
+
+  describe("muting", function() {
+    beforeEach(function() {
+      player.volume = 5;
+    });
+
+    it("sets the volume to 0", function() {
+      player.mute();
+      expect(player.volume).toEqual(0);
+    });
+
+    it("sets the volume to the last value when already muted", function() {
+      player.mute();
+      player.mute();
+      expect(player.volume).toEqual(5);
+    });
+  });
+
+  it("sets the volume to 11!", function() {
+    player.crankItUp();
+    expect(player.volume).toEqual(11);
+  });
 });

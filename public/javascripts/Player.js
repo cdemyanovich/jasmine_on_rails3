@@ -20,3 +20,16 @@ Player.prototype.resume = function() {
 Player.prototype.makeFavorite = function() {
   this.currentlyPlayingSong.persistFavoriteStatus(true);
 };
+
+Player.prototype.mute = function() {
+  if (this.volume == 0) {
+    this.volume = this.lastVolume;
+  } else {
+    this.lastVolume = this.volume;
+    this.volume = 0;
+  }
+};
+
+Player.prototype.crankItUp = function() {
+  this.volume = 11;
+};
